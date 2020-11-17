@@ -10,7 +10,7 @@ i2c = busio.I2C(board.SCL, board.SDA)
 
 sensor = adafruit_lsm9ds1.LSM9DS1_I2C(i2c)
 # set mag to 1000hz sampling
-sensor.set_property_mag(adafruit_lsm9ds1._LSM9DS1_REGISTER_CTRL_REG1_M, 0b10)
+#sensor.set_property_mag(adafruit_lsm9ds1._LSM9DS1_REGISTER_CTRL_REG1_M, 0b10)
 # Main loop will read the magnetometer
 # values every second and print them out.
 while True:
