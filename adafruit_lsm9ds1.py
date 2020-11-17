@@ -61,10 +61,8 @@ import adafruit_bus_device.spi_device as spi_device
 from micropython import const
 
 # Internal constants and register values:
-#_LSM9DS1_ADDRESS_ACCELGYRO = const(0x6B)
-_LSM9DS1_ADDRESS_ACCELGYRO = const(0x6A)
-#_LSM9DS1_ADDRESS_MAG = const(0x1E)
-_LSM9DS1_ADDRESS_MAG = const(0x1C)
+_LSM9DS1_ADDRESS_ACCELGYRO = const(0x6B)
+_LSM9DS1_ADDRESS_MAG = const(0x1E)
 _LSM9DS1_XG_ID = const(0b01101000)
 _LSM9DS1_MAG_ID = const(0b00111101)
 _LSM9DS1_ACCEL_MG_LSB_2G = 0.061
