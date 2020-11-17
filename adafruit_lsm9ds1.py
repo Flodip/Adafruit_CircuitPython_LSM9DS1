@@ -179,6 +179,12 @@ class LSM9DS1:
         self.mag_gain = MAGGAIN_4GAUSS
         self.gyro_scale = GYROSCALE_245DPS
 
+    def set_property_mag(self, address, val):
+        self._write_u8(_MAGTYPE, address, val)
+
+    def set_property_accel(self, address, val):
+        self._write_u8(_XGTYPE, address, val)
+
     @property
     def accel_range(self):
         """The accelerometer range.  Must be a value of:
