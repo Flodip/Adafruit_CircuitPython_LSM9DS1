@@ -21,8 +21,7 @@ while True:
     mag_x, mag_y, mag_z = sensor.magnetic
     # Print values.
     print(
-        "{1:.0f} Magnetometer (gauss): ({0:0.3f},{1:0.3f},{2:0.3f})".format(get_time(),mag_x, mag_y, mag_z)
+        "{:015d} Magnetometer (gauss): ({0:0.3f},{1:0.3f},{2:0.3f})".format(get_time(),mag_x, mag_y, mag_z)
     )
     # Delay for a 1/1000 second.
     # time.sleep(0.001)
-
