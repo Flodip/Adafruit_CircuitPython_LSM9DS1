@@ -363,12 +363,6 @@ class LSM9DS1:
 		# MUST be implemented by subclasses!
 		raise NotImplementedError()
 
-	def set_property_mag(self, address, val):
-		self._write_u8(_MAGTYPE, address, val)
-
-	def set_property_accel(self, address, val):
-		self._write_u8(_XGTYPE, address, val)
-
 
 class LSM9DS1_I2C(LSM9DS1):
 	"""Driver for the LSM9DS1 connect over I2C.
@@ -435,6 +429,13 @@ class LSM9DS1_I2C(LSM9DS1):
 			self._BUFFER[0] = address & 0xFF
 			self._BUFFER[1] = val & 0xFF
 			i2c.write(self._BUFFER, end=2)
+
+	def set_property_mag(self, address, val):
+		self._write_u8(_MAGTYPE, address, val)
+
+	def set_property_accel(self, address, val):
+		self._write_u8(_XGTYPE, address, val)
+
 
 class LSM9DS1_SPI(LSM9DS1):
 	"""Driver for the LSM9DS1 connect over SPI.

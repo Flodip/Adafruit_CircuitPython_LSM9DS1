@@ -4,24 +4,31 @@ import time
 import board
 import busio
 import adafruit_lsm9ds1
+import threading
 
 def get_time():
-    return lambda: int(round(time.time() * 10000))
+	return int(round(time.time() * 10000))
+
+waiting_time = 0.003
 
 # I2C connection:
 i2c = busio.I2C(board.SCL, board.SDA)
 
 sensor = adafruit_lsm9ds1.LSM9DS1_I2C(i2c, 0x1C, 0x6A)
 # set mag to 1000hz sampling
-#sensor.set_property_mag(adafruit_lsm9ds1._LSM9DS1_REGISTER_CTRL_REG1_M, 0b10)
+sensor.set_property_mag(adafruit_lsm9ds1._LSM9DS1_REGISTER_CTRL_REG1_M, 0b10)
 # Main loop will read the magnetometer
 # values every second and print them out.
 while True:
-    # Read magnetometer.
-    mag_x, mag_y, mag_z = sensor.magnetic
-    # Print values.
-    print(
-        "{:015d} Magnetometer (gauss): ({0:0.3f},{1:0.3f},{2:0.3f})".format(get_time(),mag_x, mag_y, mag_z)
-    )
-    # Delay for a 1/1000 second.
-    # time.sleep(0.001)
+	t = threading.Thread(target=time.sleep, args=(waiting_time-0.001,))
+	t.start()
+
+	# Read magnetometer.
+	mag_x, mag_y, mag_z = sensor.magnetic
+
+	t.join()
+
+	# Print values.
+	print(
+		"{0:10d} Magnetometer (gauss): ({1:0.3f},{2:0.3f},{3:0.3f})".format(get_time(),mag_x, mag_y, mag_z)
+	)
